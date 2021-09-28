@@ -1,6 +1,6 @@
-
 /**
  * @author Amar Suhendra
+ * @version 28.09.21.1.2
  */
 
 import java.lang.Math;
@@ -26,40 +26,58 @@ public class biseksi {
   }
 
   public static void main(String[] args) {
-    double A = 2.4; // xBawah
-    double B = 2.7; // xAtas
-    double E = 0.02; // Nilai toleransi error
+    double A = 2.4;         // xBawah
+    double B = 2.7;         // xAtas
+    double E = 0.02;        // Nilai toleransi error
     int N = 5, iterasi = 0; // iterasi
-    double hasilA, hasilB, hasilXr = 0, hasilfxr = 0, absA, absB;
+    double hasilA;          //menampung f(a)
+    double hasilB;          //menampung (b)
+    double hasilXr = 0;     //menampung Xr
+    double hasilfxr = 0;    //menampung f(Xr)
+    double absA;            //menampung nilai absolut A
+    double absB;            //menampung nilai absolut B
     boolean kondisi = true;
-    hasilA = fungsi(A);
-    hasilB = fungsi(B);
+    
+    hasilA = fungsi(A); //f(a) = a^3 - 10a + 8
+    hasilB = fungsi(B); //f(b) = b^3 - 10b + 8
 
-    if (hasilA * hasilB > 0) {
-      System.out.println("Tidak ada akar");
-    } else {
-      while (kondisi) {
-        iterasi++;
-        hasilXr = exer(A, B);
-        hasilfxr = fungsi(hasilXr);
-        absA = Math.abs(A);
-        absB = Math.abs(B);
+    //jika f(a).f(b) > 0, maka
+    if (hasilA * hasilB > 0) { 
+      //true
+      //tidak ada akar              
+      System.out.println("Tidak ada akar"); 
+    } else { 
+      //false
+      //mempunyai akar
+      while (kondisi) { 
+        //iterasi +1
+        iterasi++; 
 
-        if (absB - absA < E || iterasi > N) {
+        hasilXr = exer(A, B);       // Xr = (a + b)/2
+        hasilfxr = fungsi(hasilXr); // f(Xr) = Xr^3 - 1
+
+        absA = Math.abs(A); // |a|
+        absB = Math.abs(B); // |b|
+
+        if (absB - absA < E || iterasi > N) { // |a-b| < e atau iterasi > iterasi maksimum
+          //keluar dari loop
           kondisi = false;
         } else {
-
-          if (hasilA * hasilfxr < 0) {
-            B = hasilXr;
-            hasilB = hasilfxr;
+          // kondisi = true
+          if (hasilA * hasilfxr < 0) { // jika f(a).f(Xr) < 0
+            // true
+            B = hasilXr;       // b = xr
+            hasilB = hasilfxr; // f(b) = f(Xr) 
           } else {
-            A = hasilXr;
-            hasilA = hasilfxr;
+            //false
+            A = hasilXr;        // a = xr
+            hasilA = hasilfxr;  // f(a) = f(Xr)
           }
 
         }
 
       }
+      //mencetak akar dari Xr dan f(Xr)
       System.out.println("Akar xr : " + Math.sqrt(hasilXr) + " dan F(Xr) : " + hasilfxr);
     }
   }
