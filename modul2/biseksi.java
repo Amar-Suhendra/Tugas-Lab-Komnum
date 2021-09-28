@@ -32,7 +32,7 @@ public class biseksi {
     double E = 0.02;        // Nilai toleransi error
     int N = 5, iterasi = 0; // iterasi
     double hasilA;          //menampung f(a)
-    double hasilB;          //menampung (b)
+    double hasilB;          //menampung f(b)
     double hasilXr = 0;     //menampung Xr
     double hasilfxr = 0;    //menampung f(Xr)
     double absA;            //menampung nilai absolut A
