@@ -77,7 +77,7 @@ public class biseksi {
 
       }
       //mencetak akar dari Xr dan f(Xr)
-      System.out.println("Akar xr : " + Math.sqrt(hasilXr) + " dan F(Xr) : " + hasilfxr);
+      System.out.println("Akar xr : " + hasilXr + " dan F(Xr) : " + hasilfxr);
     }
   }
 
