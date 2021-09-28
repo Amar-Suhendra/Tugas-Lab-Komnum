@@ -35,8 +35,7 @@ public class biseksi {
     double hasilB;          //menampung f(b)
     double hasilXr = 0;     //menampung Xr
     double hasilfxr = 0;    //menampung f(Xr)
-    double absA;            //menampung nilai absolut A
-    double absB;            //menampung nilai absolut B
+    double absA;            //menampung nilai absolut 
     boolean kondisi = true;
     
     hasilA = fungsi(A); //f(a) = a^3 - 10a + 8
@@ -57,10 +56,9 @@ public class biseksi {
         hasilXr = exer(A, B);       // Xr = (a + b)/2
         hasilfxr = fungsi(hasilXr); // f(Xr) = Xr^3 - 10 xr + 8
 
-        absA = Math.abs(A); // |a|
-        absB = Math.abs(B); // |b|
+        absA = Math.abs(B-A); // |b-a|
 
-        if (absB - absA < E || iterasi > N) { // |a-b| < e atau iterasi > iterasi maksimum
+        if (absA < E || iterasi > N) { // |a-b| < e atau iterasi > iterasi maksimum
           //keluar dari loop
           kondisi = false;
         } else {
