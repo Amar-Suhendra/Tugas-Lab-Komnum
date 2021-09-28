@@ -55,7 +55,7 @@ public class biseksi {
         iterasi++; 
 
         hasilXr = exer(A, B);       // Xr = (a + b)/2
-        hasilfxr = fungsi(hasilXr); // f(Xr) = Xr^3 - 1
+        hasilfxr = fungsi(hasilXr); // f(Xr) = Xr^3 - 10 xr + 8
 
         absA = Math.abs(A); // |a|
         absB = Math.abs(B); // |b|
