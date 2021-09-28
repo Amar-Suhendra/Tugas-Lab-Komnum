@@ -1,6 +1,7 @@
 /**
  * @author Amar Suhendra
  * @version 28.09.21.1.2
+ * https://github.com/Amar-Suhendra/Tugas-Lab-Komnum
  */
 
 import java.lang.Math;
