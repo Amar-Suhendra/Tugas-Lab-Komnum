@@ -1,3 +1,4 @@
+package modul2;
 /**
  * @author Amar Suhendra
  * @version 28.09.21.1.7
