@@ -59,7 +59,6 @@ public class NewtonRaphson {
       System.out.println("====================");
       System.out.print("Pilih jawban yang ingin dilihat (angka): ");
       pilihan = input.nextInt();
-      input.close();
       
       if (pilihan == 1) {
         System.out.print("========================= Soal 1 =========================");
@@ -131,7 +130,6 @@ public class NewtonRaphson {
 
       System.out.print("Apakah anda ingin menjalankan ulang program? (y/n) : ");
       choose = ulang.nextLine();
-      ulang.close();
 
       if (choose.equalsIgnoreCase("y")) {
         kondisi = true;
