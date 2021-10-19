@@ -137,7 +137,7 @@ public class NewtonRaphson {
         kondisi = false;
       } else {
         kondisi = false;
-        System.err.println("Inputan tidak dikenali. Program di tutup");
+        System.out.println("Inputan tidak dikenali. Program di tutup");
       }
     }
   }
