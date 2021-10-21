@@ -1,4 +1,3 @@
-
 /**
  * NewtonRaphson
  */
@@ -130,7 +129,7 @@ public class NewtonRaphson {
 
       System.out.print("Apakah anda ingin menjalankan ulang program? (y/n) : ");
       choose = ulang.nextLine();
-
+      
       if (choose.equalsIgnoreCase("y")) {
         kondisi = true;
       } else if (choose.equalsIgnoreCase("n")) {
