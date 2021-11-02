@@ -4,7 +4,7 @@
  * dengan modifikasi tabel
  * 
  * @author Amar Suhendra
- * @version 02.11.21.Alpha-03S
+ * @version 04.11.21.Alpha-04S
  */
 import java.util.Scanner;
 import java.lang.Math;
@@ -50,7 +50,7 @@ public class secant {
   public static double fungsi3(double x) {
     return Math.cos(x) - Math.sin(x);
   }
-
+  
   public static void batas1(double x0, double x1) {
     int N = 10;
     double h, xn, yn, xtemp, ftemp;
@@ -61,6 +61,46 @@ public class secant {
       yn = fungsi1(xn);
       xtemp = x0 + (i + 1) * h;
       ftemp = fungsi1(xtemp);
+
+      if (yn * ftemp < 0) {
+        if (Math.abs(yn) < Math.abs(xtemp)) {
+          xatas = xtemp;
+          xbawah = xn;
+        }
+      }
+    }
+  }
+
+  public static void batas2(double x0, double x1) {
+    int N = 10;
+    double h, xn, yn, xtemp, ftemp;
+
+    h = (x1 - x0) / N;
+    for (int i = 0; i <= N; i++) {
+      xn = x0 + i * h;
+      yn = fungsi2(xn);
+      xtemp = x0 + (i + 1) * h;
+      ftemp = fungsi2(xtemp);
+
+      if (yn * ftemp < 0) {
+        if (Math.abs(yn) < Math.abs(xtemp)) {
+          xatas = xtemp;
+          xbawah = xn;
+        }
+      }
+    }
+  }
+
+  public static void batas3(double x0, double x1) {
+    int N = 10;
+    double h, xn, yn, xtemp, ftemp;
+
+    h = (x1 - x0) / N;
+    for (int i = 0; i <= N; i++) {
+      xn = x0 + i * h;
+      yn = fungsi3(xn);
+      xtemp = x0 + (i + 1) * h;
+      ftemp = fungsi3(xtemp);
 
       if (yn * ftemp < 0) {
         if (Math.abs(yn) < Math.abs(xtemp)) {
@@ -94,7 +134,7 @@ public class secant {
         y2 = fungsi1(x1);
         xn = x1 - (x1 - x0) * y2 / (y2 - y1);
         y3 = fungsi1(xn);
-
+        System.out.printf("%d\t\t%.2f\t\t%.2f\n", iterasi,xn, y3);
         x0 = x1;
         x1 = xn;
         iterasi++;
@@ -102,11 +142,50 @@ public class secant {
       } while (abs > e && iterasi <= N);
 
     } else if (pilih == 2) {
-      System.out.println("jawaban no 2");
+      System.out.print("================ Soal 2 ================");
+      System.out.printf("\nIterasi\t\txn\t\tf(xn)\n");
+      e = 0.001;
+      x0 = 1;
+      x1 = 3;
+      iterasi++;
+      batas2(x0, x1);
+      x0 = xbawah;
+      x1 = xatas;
+      do {
+        y1 = fungsi2(x0);
+        y2 = fungsi2(x1);
+        xn = x1 - (x1 - x0) * y2 / (y2 - y1);
+        y3 = fungsi2(xn);
+        System.out.printf("%d\t\t%.2f\t\t%.2f\n", iterasi,xn, y3);
+        x0 = x1;
+        x1 = xn;
+        iterasi++;
+        abs = Math.abs(y3);
+      } while (abs > e && iterasi <= N);
     } else if (pilih == 3) {
-      System.out.println("jawaban no 3");
+      System.out.print("================ Soal 2 ================");
+      System.out.printf("\nIterasi\t\txn\t\tf(xn)\n");
+      e = 0.001;
+      x0 = 0;
+      x1 = 2;
+      iterasi++;
+      batas3(x0, x1);
+      x0 = xbawah;
+      x1 = xatas;
+      do {
+        y1 = fungsi3(x0);
+        y2 = fungsi3(x1);
+        xn = x1 - (x1 - x0) * y2 / (y2 - y1);
+        y3 = fungsi3(xn);
+        System.out.printf("%d\t\t%.2f\t\t%.2f\n", iterasi,xn, y3);
+        x0 = x1;
+        x1 = xn;
+        iterasi++;
+        abs = Math.abs(y3);
+      } while (abs > e && iterasi <= N);
     } else {
       System.out.println("Jawaban anda tidak valid");
     }
+    pilihan.close();
   }
 }
