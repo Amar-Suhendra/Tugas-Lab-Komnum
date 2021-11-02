@@ -4,11 +4,13 @@
  * dengan modifikasi tabel
  * 
  * @author Amar Suhendra
- * @version 02.11.21.Alpha-02S
+ * @version 02.11.21.Alpha-03S
  */
 import java.util.Scanner;
 import java.lang.Math;
+
 public class secant {
+  static double xatas, xbawah;
 
   public static void menu() {
     System.out.println("+=============================+");
@@ -49,6 +51,26 @@ public class secant {
     return Math.cos(x) - Math.sin(x);
   }
 
+  public static void batas1(double x0, double x1) {
+    int N = 10;
+    double h, xn, yn, xtemp, ftemp;
+
+    h = (x1 - x0) / N;
+    for (int i = 0; i <= N; i++) {
+      xn = x0 + i * h;
+      yn = fungsi1(xn);
+      xtemp = x0 + (i + 1) * h;
+      ftemp = fungsi1(xtemp);
+
+      if (yn * ftemp < 0) {
+        if (Math.abs(yn) < Math.abs(xtemp)) {
+          xatas = xtemp;
+          xbawah = xn;
+        }
+      }
+    }
+  }
+
   public static void main(String[] args) {
     Scanner pilihan = new Scanner(System.in);
     int pilih, N = 10, iterasi = 0;
@@ -64,26 +86,21 @@ public class secant {
       x0 = 1;
       x1 = 2.4;
       iterasi++;
+      batas1(x0, x1);
+      x0 = xbawah;
+      x1 = xatas;
+      do {
+        y1 = fungsi1(x0);
+        y2 = fungsi1(x1);
+        xn = x1 - (x1 - x0) * y2 / (y2 - y1);
+        y3 = fungsi1(xn);
 
-      y3 = fungsi1(1.72704);
-      abs = Math.abs(y3);
-      System.out.printf("\n%f\n",y3);
-      System.out.println(y3);
-      
-      // do {
-      //   y1 = fungsi1(x0);
-      //   y2 = fungsi1(x1);
-      //   xn = x1 - (x1 - x0) * y2 / (y2 - y1);
-      //   y3 = fungsi1(xn);
-      //   x0 = x1;
-      //   x1 = xn;
-      //   System.out.println("println = " + y3 + " Xn = " + xn);
-      //   System.out.printf("printf = %f   xn = %f\n",y3,xn);
-      //   abs = Math.abs(y3);
-      //   //System.out.println(abs);
-      //   // System.out.printf("%d\t\t%.5f\t\t%.5f\n", iterasi,xn, y3);
-      //   iterasi++;
-      // } while (abs >= e && iterasi <= N);
+        x0 = x1;
+        x1 = xn;
+        iterasi++;
+        abs = Math.abs(y3);
+      } while (abs > e && iterasi <= N);
+
     } else if (pilih == 2) {
       System.out.println("jawaban no 2");
     } else if (pilih == 3) {
